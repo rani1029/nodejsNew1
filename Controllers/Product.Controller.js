@@ -21,7 +21,7 @@ module.exports = {
       const result = await product.save();
       res.send(result);
     } catch (error) {
-      console.log(error.message);
+      console.log(req, error.message);
       if (error.name === 'ValidationError') {
         next(createError(422, error.message));
         return;
