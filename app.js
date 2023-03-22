@@ -11,7 +11,12 @@ app.use(express.urlencoded({ extended: true }));
 //require('./initDB')();
 const connectdb = require("./db");
 connectdb();
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 const ProductRoute = require('./Routes/Product.route');
 app.use('/products', ProductRoute);
 
